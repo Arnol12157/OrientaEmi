@@ -1,0 +1,4 @@
+<?php
+$estudiantesRep=Estudiantes::all();
+
+?>
