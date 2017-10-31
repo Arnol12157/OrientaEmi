@@ -17,7 +17,7 @@ include 'header_template.php';
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <?php include 'page_title_template.php';?>
+
 
             <!-- Main content -->
             <section class="content container-fluid">
@@ -35,7 +35,7 @@ include 'header_template.php';
                             foreach ($get_messages as $message)
                             {
                                 $idMessage=$message["id"];
-                                $estM=Estudiantes::query()->where('ci','=',$message["id_estudiante"])->get();
+                                $estM=Personas::query()->where('ci','=',$message["id_estudiante"])->get();
                                 echo '
                                 <div class="item">
                                     <img src="../template/dist/img/user3-128x128.jpg" alt="user image" class="offline">

@@ -159,7 +159,7 @@
                     $("#result").text("Procesando peticion...");
                 },
                 success: function(a){
-                    if(a==='ok')
+                    if(a.includes("ok"))
                     {
                         window.location.replace("index.php");
                     }
@@ -183,17 +183,65 @@
                 }
             });
         });
+        // boton eliminar usuario
+        $(".btnDeleteUser").click(function(){
+            var ci=$(this).attr("primary");
+            var action="eliminar";
+            $.ajax({
+                url: "Ctrl_Usuario.php",
+                method: "POST",
+                data: {ci: ci, action: action},
+                beforeSend: function(a){
+                    $("#result").text("Procesando peticion...");
+                },
+                success: function(a){
+                    console.log(a);
+                    if(a.includes("ok"))
+                    {
+                        location.reload();
+                        setTimeout(function() {
+                            toastr.options = {
+                                closeButton: true,
+                                progressBar: true,
+                                showMethod: 'slideDown',
+                                timeOut: 4000
+                            };
+                            toastr.success('El registro fue borrado exitosamente', 'Registro removido');
+                        }, 1300);
+                        $("#result").text("");
+                    }
+                    else
+                    {
+                        setTimeout(function() {
+                            toastr.options = {
+                                closeButton: true,
+                                progressBar: true,
+                                showMethod: 'slideDown',
+                                timeOut: 4000
+                            };
+                            toastr.error('Vuelva a intentarlo', 'Error');
+
+                        }, 1300);
+                        $("#result").text("");
+                    }
+                },
+                error: function(){
+                    $("#result").text("Error");
+                }
+            });
+        });
         // boton de registro Estudiantes
         $("#btnEstudiante").click(function(){
             var nombresE=$("#nombresE").val();
             var apellidosE=$("#apellidosE").val();
             var ciE=$("#ciE").val();
             var cursoE=$("#cursoE").val();
+            var gestionE=$("#gestionE").val();
             var telefonoE=$("#telefonoE").val();
             var emailE=$("#emailE").val();
             var passE=$("#passE").val();
             var verPassE=$("#verPassE").val();
-            var sexoE=$("#sexoE").val();
+            var generoE=$("#generoE").val();
             var actionE="registerEstudiante";
             if(passE===verPassE)
             {
@@ -204,10 +252,11 @@
                         apellidos: apellidosE,
                         ci: ciE,
                         curso: cursoE,
+                        gestion: gestionE,
                         telefono: telefonoE,
                         email: emailE,
                         pass: passE,
-                        sexo: sexoE,
+                        genero: generoE,
                         action: actionE
                     },
                     beforeSend: function(a){
@@ -259,6 +308,80 @@
                 }, 1300);
             }
         });
+        // boton de registro Psicologo
+        $("#btnPsicologo").click(function(){
+            var nombresP=$("#nombresP").val();
+            var apellidosP=$("#apellidosP").val();
+            var ciP=$("#ciP").val();
+            var telefonoP=$("#telefonoP").val();
+            var emailP=$("#emailP").val();
+            var passP=$("#passP").val();
+            var verPassP=$("#verPassP").val();
+            var generoP=$("#generoP").val();
+            var actionP="registerPsicologo";
+            if(passP===verPassP)
+            {
+                $.ajax({
+                    url: "Ctrl_Usuario.php",
+                    method: "POST",
+                    data: {nombres: nombresP,
+                        apellidos: apellidosP,
+                        ci: ciP,
+                        telefono: telefonoP,
+                        email: emailP,
+                        pass: passP,
+                        genero: generoP,
+                        action: actionP
+                    },
+                    beforeSend: function(a){
+                        $("#result").text("Procesando peticion...");
+                    },
+                    success: function(a){
+                        if(a.includes("ok"))
+                        {
+                            setTimeout(function() {
+                                toastr.options = {
+                                    closeButton: true,
+                                    progressBar: true,
+                                    showMethod: 'slideDown',
+                                    timeOut: 4000
+                                };
+                                toastr.success('Se ha registrado un nuevo psicologo', 'Registro exitoso');
+                            }, 1300);
+                            $("#result").text("");
+                        }
+                        else if(a.includes("no"))
+                        {
+                            setTimeout(function() {
+                                toastr.options = {
+                                    closeButton: true,
+                                    progressBar: true,
+                                    showMethod: 'slideDown',
+                                    timeOut: 4000
+                                };
+                                toastr.error('Vuelva a intentarlo', 'Registro fallido'+a);
+                            }, 1300);
+                            $("#result").text("");
+                        }
+                    },
+                    error: function(){
+                        $("#result").text("Error");
+                    }
+                });
+            }
+            else
+            {
+                setTimeout(function() {
+                    toastr.options = {
+                        closeButton: true,
+                        progressBar: true,
+                        showMethod: 'slideDown',
+                        timeOut: 4000
+                    };
+                    toastr.error('Las contraseñas no coinciden', 'Error');
+                }, 1300);
+            }
+        });
         // boton de registro Estudiantes
         $("#btnEdit").click(function(){
             var tipoE=$("#tipoE").val();
@@ -268,10 +391,11 @@
                 var apellidosE=$("#apellidosE").val();
                 var ciE=$("#ciE").val();
                 var cursoE=$("#cursoE").val();
+                var gestionE=$("#gestionE").val();
                 var telefonoE=$("#telefonoE").val();
                 var emailE=$("#emailE").val();
                 var passE=$("#passE").val();
-                var sexoE=$("#sexoE").val();
+                var generoE=$("#generoE").val();
                 var idE=$("#idE").val();
                 var actionE="editUser";
 
@@ -282,16 +406,17 @@
                         apellidos: apellidosE,
                         ci: ciE,
                         curso: cursoE,
+                        gestion: gestionE,
                         telefono: telefonoE,
                         email: emailE,
                         pass: passE,
-                        sexo: sexoE,
+                        genero: generoE,
                         tipo: tipoE,
                         id: idE,
                         action: actionE
                     },
                     success: function(a){
-                        if(a==='ok')
+                        if(a.includes("ok"))
                         {
                             setTimeout(function() {
                                 toastr.options = {
@@ -333,9 +458,11 @@
             {
                 var nombresE=$("#nombresE").val();
                 var apellidosE=$("#apellidosE").val();
+                var ciE=$("#ciE").val();
                 var telefonoE=$("#telefonoE").val();
                 var emailE=$("#emailE").val();
                 var passE=$("#passE").val();
+                var generoE=$("#generoE").val();
                 var idE=$("#idE").val();
                 var actionE="editUser";
 
@@ -344,15 +471,17 @@
                     method: "POST",
                     data: {nombres: nombresE,
                         apellidos: apellidosE,
+                        ci: ciE,
                         telefono: telefonoE,
                         email: emailE,
                         pass: passE,
+                        genero: generoE,
                         tipo: tipoE,
                         id: idE,
                         action: actionE
                     },
                     success: function(a){
-                        if(a==='ok')
+                        if(a.includes("ok"))
                         {
                             setTimeout(function() {
                                 toastr.options = {

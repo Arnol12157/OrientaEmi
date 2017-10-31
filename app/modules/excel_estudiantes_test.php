@@ -19,10 +19,14 @@ include_once 'Ctrl_Reportes.php';
         <td colspan="6"><CENTER><strong>REPORTE DE ESTUDIANTES</strong></CENTER></td>
     </tr>
     <tr>
-        <td bgcolor="#adff2f"><strong>CI</strong></td>
+
         <td bgcolor="#adff2f"><strong>Nombres</strong></td>
         <td bgcolor="#adff2f"><strong>Apellidos</strong></td>
         <td bgcolor="#adff2f"><strong>Curso</strong></td>
+
+
+        <td bgcolor="#adff2f"><strong>Gestion</strong></td>
+
         <td bgcolor="#adff2f"><strong>Interes</strong></td>
         <td bgcolor="#adff2f"><strong>Aptitud</strong></td>
     </tr>
@@ -63,10 +67,14 @@ include_once 'Ctrl_Reportes.php';
         }
 
         echo '<tr>
-                                        <td>'.$est["ci"].'</td>
+                                        
                                         <td>'.$est["nombres"].'</td>
                                         <td>'.$est["apellidos"].'</td>
-                                        <td>'.$est["curso"].'</td>
+                                        <td>'.$est["curso_paralelo"].'</td>
+                                        
+                                        
+                                        <td>'.$est["gestion"].'</td>
+                                        
                                         <td>'.$txtInteres.'</td>
                                         <td>'.$txtAptitud.'</td>
                                       </tr>';

@@ -17,7 +17,7 @@
 
     if($tipo=="1") // Estudiante
     {
-        $val_est=Estudiantes::query()->where('email','=',$email)->get();
+        $val_est=Personas::query()->where('email','=',$email)->get();
         $dataUser=array(
             'ciOid' => $val_est[0]["ci"],
             'nombres' => $val_est[0]["nombres"],
@@ -25,20 +25,22 @@
             'telefono' => $val_est[0]["telefono"],
             'email' => $val_est[0]["email"],
             'password' => $val_est[0]["password"],
-            'curso' => $val_est[0]["curso"],
-            'sexo' => $val_est[0]["sexo"],
+            'curso' => $val_est[0]["curso_paralelo"],
+            'genero' => $val_est[0]["genero"],
+            'gestion' => $val_est[0]["gestion"],
         );
     }
     elseif($tipo=="0") // Psicologia
     {
-        $val_psi=Psicologia::query()->where('email','=',$email)->get();
+        $val_psi=Personas::query()->where('email','=',$email)->get();
         $dataUser=array(
-            'ciOid' => $val_psi[0]["id"],
+            'ciOid' => $val_psi[0]["ci"],
             'nombres' => $val_psi[0]["nombres"],
             'apellidos' => $val_psi[0]["apellidos"],
             'telefono' => $val_psi[0]["telefono"],
             'email' => $val_psi[0]["email"],
             'password' => $val_psi[0]["password"],
+            'genero' => $val_psi[0]["genero"],
         );
     }
 ?>

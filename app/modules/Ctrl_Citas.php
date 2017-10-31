@@ -9,7 +9,7 @@ if(isset($new_message))
         'asunto'=>$new_message,
         'estado'=>"NO_LEIDO"
     ]);
-    header('Location: index.php');
+    header('Location: indexCitas.php');
 }
 if($tipo=="1")
 {

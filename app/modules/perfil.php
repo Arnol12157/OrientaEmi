@@ -60,7 +60,7 @@ include 'header_template.php';
                         <div class="tab-content">
                             <!-- /.tab-pane -->
                             <div class="active tab-pane" id="edit">
-                                <form class="form-horizontal">
+                                <form class="form-horizontal" onsubmit="return false">
                                     <div class="form-group">
                                         <label for="inputNombres" class="col-sm-2 control-label">Nombres</label>
                                         <div class="col-sm-10">
@@ -87,34 +87,36 @@ include 'header_template.php';
                                             <input type="email" class="form-control" id="emailE" placeholder="<?php echo $dataUser['email'] ?>" value="<?php echo $dataUser['email'] ?>" maxlength="150" required="">
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="inputCI" class="col-sm-2 control-label">CI</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="ciE" placeholder="<?=$dataUser["ciOid"]?>" value="<?=$dataUser["ciOid"]?>" required="" data-inputmask="\'mask\': [\'9999999\', \'99999999\']" data-mask>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputSexo" class="col-sm-2 control-label">Genero</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control m-b" id="generoE">
+                                                <option value="<?=$dataUser["genero"]?>"><?=$dataUser["genero"]?></option>
+                                                <option value="MASCULINO">Masculino</option>
+                                                <option value="FEMENINO">Femenino</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <?php
                                     if($tipo=="1")
                                     {
                                         echo '
                                         <div class="form-group">
-                                            <label for="inputCurso" class="col-sm-2 control-label">Curso</label>
+                                            <label for="inputCurso" class="col-sm-2 control-label">Curso y Paralelo</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control m-b" id="cursoE">
-                                                    <option value="'.$dataUser["curso"].'">'.$dataUser["curso"].'</option>
-                                                    <option value="PRIMER SEMESTRE">Primer Semestre</option>
-                                                    <option value="SEGUNDO SEMESTRE">Segundo Semestre</option>
-                                                </select>
+                                                <input type="text" class="form-control" id="cursoE" placeholder="'.$dataUser["curso"].'" value="'.$dataUser["curso"].'" required="">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputCI" class="col-sm-2 control-label">CI</label>
+                                            <label for="inputGestion" class="col-sm-2 control-label">Gestion</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="ciE" placeholder="'.$dataUser["ciOid"].'" value="'.$dataUser["ciOid"].'" required="" data-inputmask="\'mask\': [\'9999999\', \'99999999\']" data-mask>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputSexo" class="col-sm-2 control-label">Sexo</label>
-                                            <div class="col-sm-10">
-                                                <select class="form-control m-b" id="sexoE">
-                                                    <option value="'.$dataUser["sexo"].'">'.$dataUser["sexo"].'</option>
-                                                    <option value="MASCULINO">Masculino</option>
-                                                    <option value="FEMENINO">Femenino</option>
-                                                </select>
+                                                <input type="text" class="form-control" id="gestionE" placeholder="'.$dataUser["gestion"].'" value="'.$dataUser["gestion"].'" required="">
                                             </div>
                                         </div>
                                         ';
@@ -128,7 +130,7 @@ include 'header_template.php';
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="button" id="btnEdit" class="btn btn-danger">Editar</button>
+                                            <button type="submit" id="btnEdit" class="btn btn-danger">Editar</button>
                                         </div>
                                     </div>
                                 </form>

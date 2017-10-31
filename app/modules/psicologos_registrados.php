@@ -1,7 +1,7 @@
 <?php
 // configs
 include_once 'requires.php';
-include 'Ctrl_Estudiante.php';
+include 'Ctrl_Psicologo.php';
 ?>
 <html>
 <?php
@@ -19,7 +19,7 @@ include 'header_template.php';
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1> 
-                <small><h4>Estudiantes Registrados</h4></small>
+                <small><h4>Psicologos Registrados</h4></small>
             </h1>
         </section>
         <!-- Main content -->
@@ -34,11 +34,8 @@ include 'header_template.php';
                             <th>CI</th>
                             <th>Nombres</th>
                             <th>Apellidos</th>
-                            <th>Curso</th>
                             <th>Telefono</th>
                             <th>Email</th>
-                            <th>Gestion</th>
-                            <th>Test de Interes y Aptitud</th>
                             <!--<th>Editar</th>-->
                             <th>Eliminar</th>
                         </tr>
@@ -51,13 +48,10 @@ include 'header_template.php';
                                         <td>'.$es["ci"].'</td>
                                         <td>'.$es["nombres"].'</td>
                                         <td>'.$es["apellidos"].'</td>
-                                        <td>'.$es["curso_paralelo"].'</td>
                                         <td>'.$es["telefono"].'</td>
                                         <td>'.$es["email"].'</td>
-                                        <td>'.$es["gestion"].'</td>
-                                        <td class="text-center"><a type="button" class="btn btn-success" href="pdf_detalle_test.php?id='.$es["ci"].'">Ver test</a></td>
                                         
-                                        <td class="text-center"><a type="button" class="btn btn-danger btnDeleteUser" primary="'.$es["ci"].'">Eliminar</a></td>
+                                        <td class="text-center"><button type="button" class="btn btn-danger btnDeleteUser" primary="'.$es["ci"].'">Eliminar</button></td>
                                       </tr>';
                         }
                         ?>

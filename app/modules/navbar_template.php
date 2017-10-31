@@ -47,7 +47,31 @@
                         <ul class="sidebar-menu" data-widget="tree">
                             <li class="header">MENU</li>
                             <!-- Optionally, you can add icons to the links -->
-                            <li class="active"><a href="estudiantes_registrados.php"><i class="fa fa-link"></i> <span>Estudiantes Registrados</span></a></li>
+                            <li class="treeview">
+                                <a href="#"><i class="fa fa-link"></i> <span>Nuevo Usuario</span>
+                                    <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                              </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <!--
+                                    <li><a href="informe_test.php">Registrar Estudiante</a></li>
+                                    -->
+                                    <li><a href="register_psicologo.php">Registrar Psicologo</a></li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#"><i class="fa fa-link"></i> <span>Lista de Usuarios</span>
+                                    <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                              </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="estudiantes_registrados.php">Estudiantes Registrados</a></li>
+                                    <li><a href="psicologos_registrados.php">Psicologos Registrados</a></li>
+                                </ul>
+                            </li>
+                            
                             <li><a href="reportes.php"><i class="fa fa-link"></i> <span>Reportes</span></a></li>
                             <li><a href="tutoPsicologa.php"><i class="fa fa-link"></i> <span>Ayuda</span></a></li>
                         </ul>

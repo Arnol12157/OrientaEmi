@@ -144,6 +144,10 @@ if(isset($_REQUEST["test1"]))
         'test'=>'APTITUDES'
     ]);
 
+    include_once 'fuzzy_logic_Final.php';
+
     header('Location: historial_prueba.php');
 }
+
+
 ?>

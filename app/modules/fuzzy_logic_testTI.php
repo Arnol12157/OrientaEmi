@@ -967,7 +967,7 @@ if($probCarrera>50)
 else
 {
     $probCarrera=100-$probCarrera;
-    $carrera="INGENIERIA DE TELEOOMUNICACIONES";
+    $carrera="INGENIERIA DE TELECOMUNICACIONES";
 }
 
 ?>

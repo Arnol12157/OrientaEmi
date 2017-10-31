@@ -17,7 +17,7 @@ include 'header_template.php';
     <div class="register-box-body">
         <p class="login-box-msg">Registrate en OV</p>
 
-        <form>
+        <form onsubmit="return false">
             <div class="form-group">
                 <input type="text" class="form-control" id="nombresE" placeholder="Nombres" maxlength="150" required="">
             </div>
@@ -28,11 +28,10 @@ include 'header_template.php';
                 <input type="text" class="form-control" id="ciE" placeholder="CI" required="" data-inputmask="'mask': ['9999999', '99999999']" data-mask>
             </div>
             <div class="form-group">
-                <select class="form-control m-b" id="cursoE">
-                    <option value="Primer Semestre">Primer Semestre</option>
-                    <option value="Segundo Semestre">Segundo Semestre</option>
-
-                </select>
+                <input type="text" class="form-control" id="cursoE" placeholder="Curso y Paralelo" required="">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="gestionE" placeholder="Gestion" required="">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" id="telefonoE" placeholder="Telefono" required="" data-inputmask="'mask': ['999-9999' , '999-99999']" data-mask>
@@ -47,12 +46,12 @@ include 'header_template.php';
                 <input type="password" class="form-control" id="verPassE" placeholder="Repetir contraseña" minlength="6" maxlength="10" required="">
             </div>
             <div class="form-group">
-                <select class="form-control m-b" id="sexoE">
+                <select class="form-control m-b" id="generoE">
                     <option value="MASCULINO">Masculino</option>
                     <option value="FEMENINO">Femenino</option>
                 </select>
             </div>
-            <button type="button" id="btnEstudiante" class="btn btn-primary block full-width m-b">Registrarse</button>
+            <button type="submit" id="btnEstudiante" class="btn btn-primary block full-width m-b">Registrarse</button>
             <p class="text-muted text-center"><small>Ya tienes una cuenta?</small></p>
             <div class="text-center">
                 <span id="result"></span>

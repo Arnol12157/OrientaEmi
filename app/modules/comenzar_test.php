@@ -80,7 +80,7 @@ include 'header_template.php';
                                 <form action="Ctrl_Test_Vocacional.php" method="get" class="form-horizontal">
                                     <div id="preguntas" class="form-group">
                                     </div>
-                                </form>
+
                                     <div>
                                         <button type="submit" class="btn btn-primary block full-width m-b col-md-12 col-sm-12">Finalizar Test</button>
                                     </div>

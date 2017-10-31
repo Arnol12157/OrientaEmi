@@ -47,10 +47,10 @@ include 'header_template.php';
             <table id="example2" class="table table-bordered table-striped">
              <thead>
                 <tr>
-                    <th>CI</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Curso</th>
+                    <th>Gestion</th>
                     <th>Interes</th>
                     <th>Aptitud</th>
                 </tr>
@@ -92,10 +92,10 @@ include 'header_template.php';
                     }
 
                     echo '<tr>
-                                        <td>'.$est["ci"].'</td>
                                         <td>'.$est["nombres"].'</td>
                                         <td>'.$est["apellidos"].'</td>
-                                        <td>'.$est["curso"].'</td>
+                                        <td>'.$est["curso_paralelo"].'</td>
+                                        <td>'.$est["gestion"].'</td>
                                         <td>'.$txtInteres.'</td>
                                         <td>'.$txtAptitud.'</td>
                                       </tr>';

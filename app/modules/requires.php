@@ -15,6 +15,7 @@
     require_once '../models/Citas.php';
     require_once '../models/PruebasAptitud.php';
     require_once '../models/Resultados.php';
+    require_once '../models/Personas.php';
 
     require_once '../session/session.php';
 ?>

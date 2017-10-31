@@ -16,11 +16,23 @@
             $apellidos=$_POST['apellidos'];
             $ci=$_POST['ci'];
             $curso=$_POST['curso'];
+            $gestion=$_POST['gestion'];
             $telefono=$_POST['telefono'];
             $email=$_POST['email'];
             $pass=$_POST['pass'];
-            $sexo=$_POST['sexo'];
-            $result=registerEstudiante($nombres,$apellidos,$ci,$curso,$telefono,$email,$pass,$sexo);
+            $genero=$_POST['genero'];
+            $result=registerEstudiante($nombres,$apellidos,$ci,$curso,$gestion,$telefono,$email,$pass,$genero);
+            echo $result;
+            break;
+        case "registerPsicologo":
+            $nombres=$_POST['nombres'];
+            $apellidos=$_POST['apellidos'];
+            $ci=$_POST['ci'];
+            $telefono=$_POST['telefono'];
+            $email=$_POST['email'];
+            $pass=$_POST['pass'];
+            $genero=$_POST['genero'];
+            $result=registerPsicologo($nombres,$apellidos,$ci,$telefono,$email,$pass,$genero);
             echo $result;
             break;
         case "editUser":
@@ -28,13 +40,19 @@
             $apellidos=$_POST['apellidos'];
             $ci=$_POST['ci'];
             $curso=$_POST['curso'];
+            $gestion=$_POST['gestion'];
             $telefono=$_POST['telefono'];
             $email=$_POST['email'];
             $pass=$_POST['pass'];
-            $sexo=$_POST['sexo'];
+            $genero=$_POST['genero'];
             $tipo=$_POST['tipo'];
             $id=$_POST['id'];
-            $result=editUser($nombres,$apellidos,$ci,$curso,$telefono,$email,$pass,$sexo,$tipo,$id);
+            $result=editUser($nombres,$apellidos,$ci,$curso,$gestion,$telefono,$email,$pass,$genero,$tipo,$id);
+            echo $result;
+            break;
+        case "eliminar":
+            $ci=$_POST['ci'];
+            $result=remove($ci);
             echo $result;
             break;
     }
@@ -60,21 +78,40 @@
         }
     }
 
-    function registerEstudiante($nombres, $apellidos, $ci, $curso, $telefono, $email, $pass, $sexo)
+    function remove($ci)
     {
-        $val_est=Estudiantes::query()->where('ci','=',$ci)->get();
+        $persona=Personas::query()->where('ci','=',$ci)->get();
+        Usuarios::query()->where('email','=',$persona[0]['email'])->delete();
+        Personas::query()->where('ci','=',$ci)->delete();
+
+        $check_usuario=Usuarios::query()->where('email','=',$persona[0]['email'])->get();
+        $check_persona=Personas::query()->where('email','=',$persona[0]['email'])->get();
+        if($check_usuario[0]==null && $check_persona[0]==null)
+        {
+            return "ok";
+        }
+        else
+        {
+            return "no";
+        }
+    }
+
+    function registerEstudiante($nombres, $apellidos, $ci, $curso, $gestion, $telefono, $email, $pass, $genero)
+    {
+        $val_est=Personas::query()->where('ci','=',$ci)->get();
         $val_usu=Usuarios::query()->where('email','=',$email)->get();
         if($val_est[0]==null && $val_usu[0]==null)
         {
-            $register_estudiante=Estudiantes::create([
+            $register_estudiante=Personas::create([
                 'ci'=>$ci,
                 'nombres'=>$nombres,
                 'apellidos'=>$apellidos,
-                'curso'=>$curso,
+                'curso_paralelo'=>$curso,
+                'gestion'=>$gestion,
                 'telefono'=>$telefono,
                 'email'=>$email,
                 'password'=>$pass,
-                'sexo'=>$sexo
+                'genero'=>$genero
             ]);
 
             $register_estudiante=Usuarios::create([
@@ -89,7 +126,37 @@
         return "no";
     }
 
-    function editUser($nombres, $apellidos, $ci, $curso, $telefono, $email, $pass, $sexo, $tipo, $id)
+    function registerPsicologo($nombres, $apellidos, $ci, $telefono, $email, $pass, $genero)
+    {
+        $val_est=Personas::query()->where('ci','=',$ci)->get();
+        $val_usu=Usuarios::query()->where('email','=',$email)->get();
+        if($val_est[0]==null && $val_usu[0]==null)
+        {
+            $register_usu=Personas::create([
+                'ci'=>$ci,
+                'nombres'=>$nombres,
+                'apellidos'=>$apellidos,
+                'curso_paralelo'=>'',
+                'gestion'=>'',
+                'telefono'=>$telefono,
+                'email'=>$email,
+                'password'=>$pass,
+                'genero'=>$genero
+            ]);
+
+            $register_estudiante=Usuarios::create([
+                'email'=>$email,
+                'password'=>$pass,
+                'fecha_creacion'=>date('Y-m-d H:i:s'),
+                'tipo'=>0
+            ]);
+
+            return "ok";
+        }
+        return "no";
+    }
+
+    function editUser($nombres, $apellidos, $ci, $curso, $gestion, $telefono, $email, $pass, $genero, $tipo, $id)
     {
         if($tipo=="0")
         {
@@ -101,20 +168,24 @@
             ]);
             $_SESSION['email'] = $email;
 
-            $val_psi=Psicologia::query()->where('email','=',$past_email)->update([
+            $val_psi=Personas::query()->where('email','=',$past_email)->update([
+                'ci'=>$ci,
                 'nombres'=>$nombres,
                 'apellidos'=>$apellidos,
                 'telefono'=>$telefono,
                 'email'=>$email,
                 'password'=>$pass,
+                'genero'=>$genero
             ]);
 
-            $val_psi_ver=Psicologia::query()
+            $val_psi_ver=Personas::query()
+                ->where('ci','=',$ci)
                 ->where('nombres','=',$nombres)
                 ->where('apellidos','=',$apellidos)
                 ->where('telefono','=',$telefono)
                 ->where('email','=',$email)
                 ->where('password','=',$pass)
+                ->where('genero','=',$genero)
                 ->get();
 
             if($val_psi_ver[0]==null)
@@ -135,25 +206,27 @@
                 'password'=>$pass
             ]);
 
-            $val_est=Estudiantes::query()->where('email','=',$past_email)->update([
+            $val_est=Personas::query()->where('email','=',$past_email)->update([
+                'ci'=>$ci,
                 'nombres'=>$nombres,
                 'apellidos'=>$apellidos,
-                'ci'=>$ci,
-                'curso'=>$curso,
+                'curso_paralelo'=>$curso,
+                'gestion'=>$gestion,
                 'telefono'=>$telefono,
                 'email'=>$email,
                 'password'=>$pass,
-                'sexo'=>$sexo
+                'genero'=>$genero
             ]);
 
-            $val_est_ver=Estudiantes::query()->where('ci','=',$ci)
+            $val_est_ver=Personas::query()->where('ci','=',$ci)
                                             ->where('nombres','=',$nombres)
                                             ->where('apellidos','=',$apellidos)
-                                            ->where('curso','=',$curso)
+                                            ->where('curso_paralelo','=',$curso)
+                                            ->where('gestion','=',$gestion)
                                             ->where('telefono','=',$telefono)
                                             ->where('email','=',$email)
                                             ->where('password','=',$pass)
-                                            ->where('sexo','=',$sexo)
+                                            ->where('genero','=',$genero)
                                             ->get();
 
                 if($val_est_ver[0]==null)

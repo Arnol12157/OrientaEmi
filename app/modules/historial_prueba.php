@@ -31,13 +31,13 @@ include 'header_template.php';
                 <div class="col-md-12">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#interes" data-toggle="tab">Test de Interes</a></li>
-                            <li class=""><a href="#aptitud" data-toggle="tab">Test de Aptitud</a></li>
-                            <li class=""><a href="#perfil" data-toggle="tab">Perfil de Intereses y Aptitudes</a></li>
+                            <!--<li class="active"><a href="#interes" data-toggle="tab">Test de Interes</a></li>
+                            <li class=""><a href="#aptitud" data-toggle="tab">Test de Aptitud</a></li>-->
+                            <li class="active"><a href="#perfil" data-toggle="tab">Perfil de Intereses y Aptitudes</a></li>
                         </ul>
+
                         <div class="tab-content">
-                            <!-- /.tab-pane -->
-                            <div class="active tab-pane" id="interes">
+                            <div class="tab-pane" id="interes">
                                 <input type="hidden" id="res_TI" value="<?= $pruebaOV[0]["res_TI"]*100/30 ?>">
                                 <input type="hidden" id="res_MP" value="<?= $pruebaOV[0]["res_MP"]*100/30 ?>">
                                 <input type="hidden" id="res_DC" value="<?= $pruebaOV[0]["res_DC"]*100/30 ?>">
@@ -69,7 +69,7 @@ include 'header_template.php';
                             </div>
                             <!-- /.tab-pane -->
                             <!-- /.tab-pane -->
-                            <div class="active tab-pane" id="aptitud">
+                            <div class="tab-pane" id="aptitud">
                                 <input type="hidden" id="res_EP" value="<?= $pruebaAp[0]["res_EP"]*100/30 ?>">
                                 <input type="hidden" id="res_MC" value="<?= $pruebaAp[0]["res_MC"]*100/30 ?>">
                                 <input type="hidden" id="res_PE" value="<?= $pruebaAp[0]["res_PE"]*100/30 ?>">
@@ -106,7 +106,7 @@ include 'header_template.php';
                                     <div class="inner">
                                         <!--<h3>60<sup style="font-size: 20px">%</sup></h3>-->
                                         <h2>Perfil de Intereses y Aptitudes</h2>
-                                        <p>Tus aptitudes e intereses se encuentran en el mismo rango, por lo tanto puedes considerar en primer lugar actividades propias de esta area, se le recomienda la carrera de: <?= $fuzzyShow[0]['carrera'] ?></p>
+                                        <p><?= $textAptInt ?></p>
                                     </div>
                                     <div class="icon">
                                         <i class="ion ion-stats-bars"></i>

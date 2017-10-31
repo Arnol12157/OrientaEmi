@@ -16,7 +16,7 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Bienvenido a OV, sistema basado en logica difusa para la Orientacion Vocacional de los Estudiantes</p>
-        <form method="post">
+        <form method="post" onsubmit="return false">
             <div class="form-group has-feedback">
                 <input type="email" id="email" class="form-control" placeholder="Email" required="">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -28,7 +28,7 @@
             <div class="row">
                 <!-- /.col -->
                 <div class="col-xs-12">
-                    <button type="button" id="btn" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+                    <button type="submit" id="btn" class="btn btn-primary btn-block btn-flat">Ingresar</button>
                 </div>
                 <!-- /.col -->
             </div>

@@ -37,6 +37,8 @@ $pregAp=($pruebaAp->count());
 $fuzzyShow=Fuzzy::query()->where('id_estudiante','=', $dataUser['ciOid'])->get();
 $resInteres=Resultados::query()->where('id_estudiante','=', $dataUser['ciOid'])->where('test','=','INTERESES')->get();
 $resAptitudes=Resultados::query()->where('id_estudiante','=', $dataUser['ciOid'])->where('test','=','APTITUDES')->get();
+$resAptInt=Resultados::query()->where('id_estudiante','=', $dataUser['ciOid'])->where('tipo','=','IYA')->get();
+$textAptInt=$resAptInt[0]['test'];
 if(($resAptitudes[0]['porcentaje']*100/30)>=0 && ($resAptitudes[0]['porcentaje']*100/30)<=25) {
     $textAptitud="corresponde a la FALTA DE PRÁCTICA; en este rubro se encuentran todas las actividades que no has experimentado, y por lo tanto desconoces si tienes la habilidad.";
 }
