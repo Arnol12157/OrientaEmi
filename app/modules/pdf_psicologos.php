@@ -58,7 +58,8 @@ $codigoHTML='
 </html>';
 $codigoHTML=utf8_encode($codigoHTML);
 $dompdf=new DOMPDF();
-$dompdf->load_html($codigoHTML);
+//$dompdf->load_html($codigoHTML);
+$dompdf->load_html(utf8_decode($codigoHTML));
 ini_set("memory_limit","128M");
 $dompdf->set_paper('a4','portrait'); //Esta l�nea es para hacer la p�gina del PDF m�s grande
 $dompdf->render();

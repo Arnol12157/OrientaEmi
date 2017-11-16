@@ -17,12 +17,12 @@ include 'header_template.php';
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-<section class="content-header">
-      <h1>
-        OrientaEmi
-        <small><h4>Historial de la Prueba</h4></small>
-      </h1>
-</section>
+        <section class="content-header">
+            <h1>
+                OrientaEmi
+                <small><h4>Historial de la Prueba</h4></small>
+            </h1>
+        </section>
 
         <!-- Main content -->
         <section class="content container-fluid">
@@ -31,13 +31,13 @@ include 'header_template.php';
                 <div class="col-md-12">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <!--<li class="active"><a href="#interes" data-toggle="tab">Test de Interes</a></li>
-                            <li class=""><a href="#aptitud" data-toggle="tab">Test de Aptitud</a></li>-->
-                            <li class="active"><a href="#perfil" data-toggle="tab">Perfil de Intereses y Aptitudes</a></li>
+                            <li class="active"><a href="#interes" data-toggle="tab">Test de Interes</a></li>
+                            <li class=""><a href="#aptitud" data-toggle="tab">Test de Aptitud</a></li>
+                            <li class=""><a href="#perfil" data-toggle="tab">Perfil de Intereses y Aptitudes</a></li>
                         </ul>
 
                         <div class="tab-content">
-                            <div class="tab-pane" id="interes">
+                            <div class="active tab-pane" id="interes">
                                 <input type="hidden" id="res_TI" value="<?= round(($pruebaOV[0]["res_TI"]*100/30),2) ?>">
                                 <input type="hidden" id="res_MP" value="<?= round(($pruebaOV[0]["res_MP"]*100/30),2) ?>">
                                 <input type="hidden" id="res_DC" value="<?= round(($pruebaOV[0]["res_DC"]*100/30),2) ?>">
@@ -57,7 +57,7 @@ include 'header_template.php';
                                               <div class="small-box bg-green">
                                                 <div class="inner">
                                                   <h3>'.round(($resInteres[0]['porcentaje']*100/30),2).'<sup style="font-size: 20px">%</sup></h3>
-                                                  <p>La carrera acorde a tu interés es '.$fuzzyShow[0]['carrera'].'</p>
+                                                  <p>La carrera acorde a su interés es '.$fuzzyShow[0]['carrera'].'</p>
                                                 </div>
                                                 <div class="icon">
                                                   <i class="ion ion-stats-bars"></i>
@@ -69,7 +69,7 @@ include 'header_template.php';
                             </div>
                             <!-- /.tab-pane -->
                             <!-- /.tab-pane -->
-                            <div class="tab-pane" id="aptitud">
+                            <div class="active tab-pane" id="aptitud">
                                 <input type="hidden" id="res_EP" value="<?= round(($pruebaAp[0]["res_EP"]*100/30),2) ?>">
                                 <input type="hidden" id="res_MC" value="<?= round(($pruebaAp[0]["res_MC"]*100/30),2) ?>">
                                 <input type="hidden" id="res_PE" value="<?= round(($pruebaAp[0]["res_PE"]*100/30),2) ?>">
@@ -102,27 +102,17 @@ include 'header_template.php';
                             <!-- /.tab-pane -->
                             <div class="active tab-pane" id="perfil">
                                 <div id="chartPerfil" width="400" height="250"></div>
-                                <div class="small-box bg-green col-md-6">
-                                    <div class="inner">
-                                        <!--<h3>60<sup style="font-size: 20px">%</sup></h3>-->
-                                        <h2>Perfil de Intereses y Aptitudes</h2>
-                                        <p><?= $textAptInt ?></p>
+
+                                    <div class="small-box bg-green">
+                                        <div class="inner">
+                                            <h3>Perfil de Interes y Aptitud</h3>
+                                            <p><?=$textAptInt?></p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="ion ion-stats-bars"></i>
+                                        </div>
                                     </div>
-                                    <div class="icon">
-                                        <i class="ion ion-stats-bars"></i>
-                                    </div>
-                                </div>
-                                <div class="small-box bg-blue col-md-6">
-                                    <div class="inner">
-                                        <!--<h3>60<sup style="font-size: 20px">%</sup></h3>-->
-                                        <h2>Programar Cita</h2>
-                                        <p>Tras conocer tus resultados de los tests, en caso de que usted quiera hablar personalmente con la psicologa presiona el boton AGREGAR CITA, el cual te ayudara a generar una cita con la especialista</p>
-                                        <a type="button" class="btn btn-info pull-right" href="indexCitas.php">AGREGAR CITA</a>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="ion ion-chatbox"></i>
-                                    </div>
-                                </div>
+
                             </div>
                             <!-- /.tab-pane -->
                         </div>

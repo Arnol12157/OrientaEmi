@@ -55,7 +55,8 @@ include 'header_template.php';
                                         <td>'.$es["telefono"].'</td>
                                         <td>'.$es["email"].'</td>
                                         <td>'.$es["gestion"].'</td>
-                                        <td class="text-center"><a type="button" class="btn btn-success" href="pdf_detalle_test.php?id='.$es["ci"].'">Ver test</a></td>
+                                        <td class="text-center"><a type="button" class="btn btn-info" href="view_detalle_test.php?id='.$es["ci"].'">Ver test</a>
+                                                                <a type="button" class="btn btn-success" href="pdf_detalle_test.php?id='.$es["ci"].'">Reporte</a></td>
                                         
                                         <td class="text-center"><a type="button" class="btn btn-danger btnDeleteUser" primary="'.$es["ci"].'">Eliminar</a></td>
                                       </tr>';

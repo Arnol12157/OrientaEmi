@@ -34,7 +34,7 @@ $codigoHTML='
                 <td><CENTER><strong>RESULTADO DEL CUESTIONARIO DE INTERES VOCACIONAL</strong></CENTER></td>
             </tr>
             <tr>
-                <td>Interes por: '.$resInteres[0]["tipo"].'</td>
+                <td>Interes por: '.$areaInteres.'</td>
             </tr>
             <tr>
                 <td>'.$textInteres.'</td>
@@ -85,8 +85,8 @@ $codigoHTML='
                 <td><CENTER><strong>IINTERPRETACION</strong></CENTER></td>
             </tr>
             <tr>
-                <td>'.$resInteres[0]["tipo"].'</td>
-                <td>El resultado de la prueba de '.$resInteres[0]["tipo"].' fue de '.round(($resInteres[0]["porcentaje"]*100/30),2).' sobre 100, indicador que muestra que tiene un '.$txtInteres.'</td>
+                <td>'.$areaInteres.'</td>
+                <td>El resultado de la prueba de '.$areaInteres.' fue de '.round(($resInteres[0]["porcentaje"]*100/30),2).' sobre 100, indicador que muestra que tiene un '.$txtInteres.'</td>
             </tr>
         </table>
     </div>
@@ -107,7 +107,7 @@ $codigoHTML='
                 <td><CENTER><strong>RESULTADO DEL CUESTIONARIO DE APTITUD VOCACIONAL</strong></CENTER></td>
             </tr>
             <tr>
-                <td>Aptitud para: '.$resAptitudes[0]["tipo"].'</td>
+                <td>Aptitud para: '.$areaAptitud.'</td>
             </tr>
             <tr>
                 <td>'.$textAptitud.'</td>
@@ -134,14 +134,14 @@ $codigoHTML='
             <tr>
                 <td>'.round(($pruebaAp[0]["res_EP"]*100/30),2).'</td>
                 <td>'.round(($pruebaAp[0]["res_MC"]*100/30),2).'</td>
+                <td>'.round(($pruebaAp[0]["res_PE"]*100/30),2).'</td>
                 <td>'.round(($pruebaAp[0]["res_VE"]*100/30),2).'</td>
-                <td>'.round(($pruebaAp[0]["res_DM"]*100/30),2).'</td>
                 <td>'.round(($pruebaAp[0]["res_V"]*100/30),2).'</td>
                 <td>'.round(($pruebaAp[0]["res_CB"]*100/30),2).'</td>
-                <td>'.round(($pruebaAp[0]["res_CT"]*100/30),2).'</td>
+                <td>'.round(($pruebaAp[0]["res_C"]*100/30),2).'</td>
                 <td>'.round(($pruebaAp[0]["res_CA"]*100/30),2).'</td>
                 <td>'.round(($pruebaAp[0]["res_A"]*100/30),2).'</td>
-                <td>'.round(($pruebaAp[0]["res_P"]*100/30),2).'</td>
+                <td>'.round(($pruebaAp[0]["res_CI"]*100/30),2).'</td>
             </tr>
         </table>
     </div>
@@ -149,11 +149,11 @@ $codigoHTML='
         <table width="100%" border="1" cellspacing="3" cellpadding="3">
             <tr>
                 <td><CENTER><strong>AREA</strong></CENTER></td>
-                <td><CENTER><strong>IINTERPRETACION</strong></CENTER></td>
+                <td><CENTER><strong>INTERPRETACION</strong></CENTER></td>
             </tr>
             <tr>
-                <td>'.$resAptitudes[0]["tipo"].'</td>
-                <td>El resultado de la prueba de '.$resAptitudes[0]["tipo"].' fue de '.round(($resAptitudes[0]["porcentaje"]*100/30),2).' sobre 100, indicador que muestra que tiene un '.$txtAptitud.'</td>
+                <td>'.$areaAptitud.'</td>
+                <td>El resultado de la prueba de '.$areaAptitud.' fue de '.round(($resAptitudes[0]["porcentaje"]*100/30),2).' sobre 100, indicador que muestra que tiene un '.$txtAptitud.'</td>
             </tr>
         </table>
     </div>
@@ -168,7 +168,8 @@ $codigoHTML.='
 
 $codigoHTML=utf8_encode($codigoHTML);
 $dompdf=new DOMPDF();
-$dompdf->load_html($codigoHTML,'UTF-8');
+//$dompdf->load_html($codigoHTML,'UTF-8');
+$dompdf->load_html(utf8_decode($codigoHTML));
 ini_set("memory_limit","128M");
 $dompdf->set_paper('a4','portrait'); //Esta l�nea es para hacer la p�gina del PDF m�s grande
 $dompdf->render();
